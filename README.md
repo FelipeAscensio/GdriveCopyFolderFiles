@@ -3,7 +3,7 @@
 ## Folder to folder copying of files on google drive. Supports subfolders and files
 
 ## 1º Step - Clone This Repository
-    Install dependencies: pip install pip install -r /<your-path>/gdrive-folder-copier/requirements.txt
+    Install dependencies: pip install pip install -r /<path>/gdrive-folder-copier/requirements.txt
 
 ## 2º Step - For use this service, you need:
 
@@ -23,13 +23,13 @@ Run this command for your folder: chown -R  www-data:www-data gdrive-folder-copi
 
 Attention! Every time you generate a new "creds.json", you need apply command above.
 
-You also define cgi path in your apache.conf, example: ScriptAlias /cgi-bin/ /<your-path>/gdrive-folder-copier/
+You also define cgi path in your apache.conf, example: ScriptAlias /cgi-bin/ /<path>/gdrive-folder-copier/
 
 In this repo have a .conf apache to be used. "gdrive.conf"
 
 ## 5º Step - Access Your Service
 
-This service is accessed for browser, port 80 for default: http://<your-host>:80/
+This service is accessed for browser, port 80 for default: http://<host>:80/
 
 
 
