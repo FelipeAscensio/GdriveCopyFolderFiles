@@ -7,9 +7,9 @@ Install dependencies: pip install pip install -r /[your-path]/gdrive-folder-copi
 
 ## 2º Step - For use this service, you need:
 
-    * Activated Google Drive API on GCP Console: https://developers.google.com/drive/api/guides/about-sdk?hl=pt_BR
-    * Create a OAuth credentials for "Desktop" on CGP Console: https://console.cloud.google.com/apis/credentials
-    * Download credentials .json, rename to: client_secrets.json. And save in same service folder.
+    - Activated Google Drive API on GCP Console: https://developers.google.com/drive/api/guides/about-sdk?hl=pt_BR
+    - Create a OAuth credentials for "Desktop" on CGP Console: https://console.cloud.google.com/apis/credentials
+    - Download credentials .json, rename to: client_secrets.json. And save in same service folder.
 
 ## 3º Step - Validate credentials
 
