@@ -1,0 +1,127 @@
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		
+
+	</head>
+	<style>
+		body {
+	background-color: #CBDFDC;
+	}
+	.tooltip {
+			background-color: transparent;
+  			border: 0;
+	}
+	.tooltip img {
+	background-color: transparent;
+	}
+	.tooltip-inner {
+	min-width: 535px; /* Tamanho da imagem em pixels */
+    min-height: 140px; /* Tamanho da imagem em pixels */
+	}
+	pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 48%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+	margin: auto;
+    width: 50%;
+    text-align: left;
+	}
+
+	.loading-button::after {
+	content: "";
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin-left: 0.5em;
+	border-radius: 50%;
+	border: 3px solid rgb(220, 220, 220);
+	border-color: rgb(220, 220, 220) rgb(220, 220, 220) transparent;
+	animation: loading 1s linear infinite;
+	}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+	</style>
+	<body>
+		<br>
+		<div class="col-sm-6 mx-auto">
+			<div class="col-sm-4 mx-auto">
+			<img src="logo.png" alt="Google Drive" class="img-fluid">
+			</div>
+			<form id="form">
+				<div class="form-group">
+					<label for="arg2">Nome Diretório:
+					<a href="#"  title="Campo não obrigatorio! Caso em branco a novo diretório será criado com o mesmo nome do antigo" data-html="true"><i class="fas fa-info-circle text-dark"></i></a>
+					</label><br>
+					<input type="text" id="arg3" name="arg3"  class="form-control form-control-lg" placeholder="Exemplo: V1">	
+					<label for="arg1">ID de Origem:
+					<a href="#" data-toggle="tooltip" title="<img src='info.png' alt='' width='525' height='140'>" data-html="true"><i class="fas fa-info-circle text-dark"></i></a>
+					</label><br>
+					<input required type="text" id="arg1" name="arg1"  class="form-control form-control-lg" placeholder="Origem"><br>
+					<label for="arg2">ID de Destino:
+					<a href="#" data-toggle="tooltip" title="<img src='info.png' alt='' width='525' height='140'>" data-html="true"><i class="fas fa-info-circle text-dark"></i></a>
+					</label><br>
+					<input required type="text" id="arg2" name="arg2"  class="form-control form-control-lg" placeholder="Destino">				
+				</div>
+				<div class="d-flex justify-content-center">
+					<button type="submit" id="submit-button" class="btn btn-dark">Copiar</button>
+				</div>
+			</form>
+		</div>
+		<pre id="result">Log:</pre>
+		<script>
+			$.noConflict();
+			$('#submit-button').click(function(event) {
+			  event.preventDefault();
+			  // Adiciona a classe "loading-button" e o atributo "disabled" ao botão
+			  $(this).addClass('loading-button');
+			  $('#submit-button').attr('disabled', true);
+			  $('#submit-button').text('Processando...');
+			  var formData = $('#form').serialize();
+			  $.post('/cgi-bin/copy_folders.py', formData)
+				.done(function(result) {
+				  result = result.trim();
+				  // Exibe o resultado na página HTML
+				  $('#result').html("Log:" + result);
+				})
+				.always(function() {
+				  // Remove a classe "loading-button" e o atributo "disabled" do botão
+				  $('#submit-button').removeClass('loading-button');
+				  $('#submit-button').attr('disabled', false);
+				  $('#submit-button').text('Copiar');
+				});
+			});
+		  </script>
+
+		<script>
+			$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip(); 
+			});
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,6 @@
+client_config_backend: file
+client_config_file: client_secrets.json
+get_refresh_token: True
+save_credentials: True
+save_credentials_backend: file
+save_credentials_file: creds.json
